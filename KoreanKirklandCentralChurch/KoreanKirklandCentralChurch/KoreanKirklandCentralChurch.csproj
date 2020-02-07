@@ -7,5 +7,7 @@
   <ItemGroup>
     <Folder Include="Pages\" />
     <Folder Include="Pages\Shared\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 </Project>
