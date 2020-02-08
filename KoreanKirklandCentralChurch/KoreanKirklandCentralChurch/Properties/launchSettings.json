@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:63710",
-      "sslPort": 44371
+      "applicationUrl": "http://localhost:39565",
+      "sslPort": 44394
     }
   },
   "profiles": {
@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "KoreanKirkalndCentralChurch": {
+    "KoreanKirklandCentralChurch": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
