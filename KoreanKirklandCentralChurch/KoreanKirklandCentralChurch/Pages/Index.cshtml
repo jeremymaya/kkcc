@@ -1,6 +1,7 @@
 ﻿@page
 @model KoreanKirklandCentralChurch.Pages.IndexModel
 @{
+    ViewData["Title"] = "KKCC | 커클랜드중앙교회";
     Layout = "_Layout";
 }
 
@@ -9,42 +10,58 @@
         <div class="carousel-item active">
             <img src="/images/hero.jpg" class="d-block w-100 hero" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Name</h5>
-                <p>Description</p>
+                <h5>사진 1</h5>
+                <p>사진 1 설명</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/1080x600" class="d-block w-100 hero" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>사진 2</h5>
+                <p>사진 2 설명</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/1080x600" class="d-block w-100 hero" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>사진 3</h5>
+                <p>사진 3 설명</p>
             </div>
         </div>
     </div>
 </div>
-<div class="row py-5 px-3 bg-light">
-    <div class="col-md">
-        <h3>최근 말씀</h3>
-        <h5>"화목의 직분" — by 심성섭 목사</h5>
-        <p>고후 5:17-21</p>
-        <a href="#">설교 더 보기</a>
-    </div>
-    <div class="col-md">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/twvgoqeCszA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="container mt-5">
+    <div class="row py-5 px-3 bg-light">
+        <div class="col-md">
+            <h2>최근 말씀</h2>
+            <h5>"화목의 직분" — 심성섭 목사</h5>
+            <p>고후 5:17-21</p>
+            <a href="/sermons">설교 더 보기</a>
+        </div>
+        <div class="col-md">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/twvgoqeCszA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
-</div>
-<div class="row text-center mx-3">
-    <div class="col-md my-5">
-        <img class="rounded-circle mt-5" src="https://via.placeholder.com/150" />
-        <h2 class="mt-5">교회소개</h2>
-        <p class="lead mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <a class="btn btn-secondary mt-3" href="#" role="button">더 보기</a>
-    </div>
-    <div class="col-md my-5">
-        <img class="rounded-circle mt-5" src="https://via.placeholder.com/150" />
-        <h2 class="mt-5">설교말씀</h2>
-        <p class="lead mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <a class="btn btn-secondary mt-3" href="#" role="button">더 보기</a>
-    </div>
-    <div class="col-md my-5">
-        <img class="rounded-circle mt-5" src="https://via.placeholder.com/150" />
-        <h2 class="mt-5">교회활동</h2>
-        <p class="lead mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <a class="btn btn-secondary mt-3" href="#" role="button">더 보기</a>
+    <div class="row text-center mx-3">
+        <div class="col-md my-5">
+            <img class="rounded-circle mt-5" src="https://via.placeholder.com/150" />
+            <h2 class="mt-5">교회소개</h2>
+            <p class="lead mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a class="btn btn-secondary mt-3" href="/about" role="button">더 보기</a>
+        </div>
+        <div class="col-md my-5">
+            <img class="rounded-circle mt-5" src="https://via.placeholder.com/150" />
+            <h2 class="mt-5">설교말씀</h2>
+            <p class="lead mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a class="btn btn-secondary mt-3" href="/sermons" role="button">더 보기</a>
+        </div>
+        <div class="col-md my-5">
+            <img class="rounded-circle mt-5" src="https://via.placeholder.com/150" />
+            <h2 class="mt-5">교회활동</h2>
+            <p class="lead mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a class="btn btn-secondary mt-3" href="/albums" role="button">더 보기</a>
+        </div>
     </div>
 </div>
