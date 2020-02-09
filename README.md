@@ -3,6 +3,8 @@
 ## About This Project
 This is a demo website built for Korean Kirkland Covenant Church. 
 
+Deployed Link: https://koreankirklandcentralchurch.azurewebsites.net/
+
 Criteria for this demo includes:
 * Make improvements from the [current website](https://kkcc.business.site/)
 * Add ability to post and show sermons
@@ -46,6 +48,7 @@ If this demo is approved to proceed forward, below features need to be discussed
 ---
 
 ## Resource
+* [colorlib.com](https://colorlib.com/preview/theme/reborn/contact.html)
 * [Boostrap - Examples](https://getbootstrap.com/docs/4.1/examples/)
 * [YouTube Data API - Videos](https://developers.google.com/youtube/v3/docs/videos/list)
 * [Google Drive API - Files](https://developers.google.com/drive/api/v2/reference/files/list)
