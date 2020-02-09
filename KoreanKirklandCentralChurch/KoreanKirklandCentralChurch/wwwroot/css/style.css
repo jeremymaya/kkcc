@@ -8,3 +8,16 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+img {
+    object-fit: cover;
+}
+
+.album {
+    height: 225px;
+    width: 100%;
+}
+
+.hero {
+    max-height: 750px;
+}
