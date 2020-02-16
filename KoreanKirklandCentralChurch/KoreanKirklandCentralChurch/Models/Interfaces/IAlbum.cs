@@ -7,13 +7,13 @@ namespace KoreanKirklandCentralChurch.Models.Interfaces
 {
     interface IAlbum
     {
-        Task CreateAlbumAsync(Sermon sermon);
+        Task CreateAlbumAsync(Album album);
 
-        Task<Sermon> GetAlbumByIdAsync(int id);
+        Task<Album> GetAlbumByIdAsync(int id);
 
-        Task<IList<Sermon>> GetAlbumsAsync();
+        Task<IList<Album>> GetAlbumsAsync();
 
-        Task UpdateAlbumAsync(Sermon sermon);
+        Task UpdateAlbumAsync(Album album);
 
         Task DeleteAlbumAsync(int id);
     }

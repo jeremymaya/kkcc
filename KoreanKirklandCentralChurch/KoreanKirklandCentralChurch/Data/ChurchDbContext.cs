@@ -19,5 +19,6 @@ namespace KoreanKirklandCentralChurch.Data
         }
 
         public DbSet<Sermon> Sermon { get; set; }
+        public DbSet<Album> Album { get; set; }
     }
 }

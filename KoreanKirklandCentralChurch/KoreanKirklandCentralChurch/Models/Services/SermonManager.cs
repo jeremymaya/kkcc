@@ -24,7 +24,7 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// Create - saves a sermon data by saving a Sermon object into the connected database
         /// </summary>
         /// <param name="sermon">Sermon object containing new sermon data</param>
-        /// <returns>Task</returns>
+        /// <returns></returns>
         public async Task CreateSermonAsync(Sermon sermon)
         {
             await _context.Sermon.AddAsync(sermon);
@@ -41,14 +41,14 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// <summary>
         /// Read - gets all sermon data from the connected database
         /// </summary>
-        /// <returns>IList of Sermons data from the conneceted database</returns>
+        /// <returns>IList of sermon data from the conneceted database</returns>
         public async Task<IList<Sermon>> GetSemonsAsync() => await _context.Sermon.ToListAsync();
 
         /// <summary>
         /// Update - modifies a sermon data from the connected database
         /// </summary>
-        /// <param name="sermon">Ser,om object containing updated sermon data</param>
-        /// <returns>Task</returns>
+        /// <param name="sermon">Sermon object containing updated sermon data</param>
+        /// <returns></returns>
         public async Task UpdateSermonAsync(Sermon sermon)
         {
             _context.Sermon.Update(sermon);
@@ -59,7 +59,7 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// Delete - removes a sermon data from the connected database
         /// </summary>
         /// <param name="id">Sermon Id</param>
-        /// <returns>Task</returns>
+        /// <returns></returns>
         public async Task DeleteSermonAsync(int id)
         {
             Sermon sermon = await GetSermonByIdAsync(id);

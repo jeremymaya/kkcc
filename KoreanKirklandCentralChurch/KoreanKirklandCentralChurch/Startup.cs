@@ -43,6 +43,9 @@ namespace KoreanKirklandCentralChurch
 
             // Registers the ISermon and SermonManager
             services.AddScoped<ISermon, SermonManager>();
+
+            // Registers the IAlbum and AlbumManager
+            services.AddScoped<IAlbum, AlbumManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
