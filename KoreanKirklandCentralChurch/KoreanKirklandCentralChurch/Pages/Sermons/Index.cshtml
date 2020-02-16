@@ -13,69 +13,24 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 mt-5">
-            <div class="card">
-                <iframe class="card-img-top embed-responsive-item" src="https://www.youtube.com/embed/twvgoqeCszA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height:225px; width: 100%; display: block;"></iframe>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        "화목의 직분" - 심성섭 목사
-                    </h5>
-                    <p class="card-text">
-                        고후 5:17-21
-                    </p>
-                    <p class="card-text text-secondary">
-                        2020년 1월 19일
-                    </p>
+        @for (int i = 0; i < Model.Sermons.Count; i++)
+        {
+            <div class="col-md-4 mt-5">
+                <div class="card">
+                    <iframe class="card-img-top embed-responsive-item" src="@Model.Sermons[i].SermonLink" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height:225px; width: 100%; display: block;"></iframe>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            "@Model.Sermons[i].Title" - @Model.Sermons[i].Speaker
+                        </h5>
+                        <p class="card-text">
+                            고후 5:17-21
+                        </p>
+                        <p class="card-text text-secondary">
+                            @Model.Sermons[i].Date
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 mt-5">
-            <div class="card">
-                <iframe class="card-img-top embed-responsive-item" src="https://www.youtube.com/embed/twvgoqeCszA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height:225px; width: 100%; display: block;"></iframe>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        "화목의 직분" - 심성섭 목사
-                    </h5>
-                    <p class="card-text">
-                        고후 5:17-21
-                    </p>
-                    <p class="card-text text-secondary">
-                        2020년 1월 19일
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-5">
-            <div class="card">
-                <iframe class="card-img-top embed-responsive-item" src="https://www.youtube.com/embed/twvgoqeCszA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height:225px; width: 100%; display: block;"></iframe>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        "화목의 직분" - 심성섭 목사
-                    </h5>
-                    <p class="card-text">
-                        고후 5:17-21
-                    </p>
-                    <p class="card-text text-secondary">
-                        2020년 1월 19일
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-5">
-            <div class="card">
-                <iframe class="card-img-top embed-responsive-item" src="https://www.youtube.com/embed/twvgoqeCszA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height:225px; width: 100%; display: block;"></iframe>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        "화목의 직분" - 심성섭 목사
-                    </h5>
-                    <p class="card-text">
-                        고후 5:17-21
-                    </p>
-                    <p class="card-text text-secondary">
-                        2020년 1월 19일
-                    </p>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>

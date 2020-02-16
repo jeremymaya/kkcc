@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KoreanKirklandCentralChurch.Models.Interfaces
 {
-    interface ISermon
+    public interface ISermon
     {
         Task CreateSermonAsync(Sermon sermon);
 

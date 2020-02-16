@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KoreanKirklandCentralChurch.Models.Interfaces
 {
-    interface IAlbum
+    public interface IAlbum
     {
         Task CreateAlbumAsync(Album album);
 

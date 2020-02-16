@@ -20,6 +20,8 @@ namespace KoreanKirklandCentralChurch.Models
 
         [Required]
         [Display(Name = "앨범날짜")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy년MM월dd일}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [Required]
