@@ -9,7 +9,7 @@ namespace KoreanKirklandCentralChurch.Models.Interfaces
     {
         Task CreateSermonAsync(Sermon sermon);
 
-        Task GetSermonByIdAsync(int id);
+        Task<Sermon> GetSermonByIdAsync(int id);
 
         Task<IList<Sermon>> GetSemonsAsync();
 
