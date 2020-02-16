@@ -1,4 +1,6 @@
-﻿using KoreanKirklandCentralChurch.Models.Interfaces;
+﻿using KoreanKirklandCentralChurch.Data;
+using KoreanKirklandCentralChurch.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,29 +10,61 @@ namespace KoreanKirklandCentralChurch.Models.Services
 {
     public class SermonManager : ISermon
     {
-        public Task CreateSermonAsync(Sermon sermon)
+        /// <summary>
+        /// Establishes a prviate connection to a database via dependency injection
+        /// </summary>
+        private readonly ChurchDbContext _context;
+
+        public SermonManager(ChurchDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task DeleteSermonAsync(int id)
+        /// <summary>
+        /// Create - saves a sermon data by saving a Sermon object into the connected database
+        /// </summary>
+        /// <param name="sermon">Sermon object containing new sermon data</param>
+        /// <returns>Task</returns>
+        public async Task CreateSermonAsync(Sermon sermon)
         {
-            throw new NotImplementedException();
+            await _context.Sermon.AddAsync(sermon);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IList<Sermon>> GetSemonsAsync()
+        /// <summary>
+        /// Read - gets a sermon data based on the sermon Id from the connected database
+        /// </summary>
+        /// <param name="id">Sermon Id</param>
+        /// <returns>Sermon data that matches with the sermon Id from the connected database</returns>
+        public async Task<Sermon> GetSermonByIdAsync(int id) => await _context.Sermon.FirstOrDefaultAsync(sermon => sermon.Id == id);
+
+        /// <summary>
+        /// Read - gets all sermon data from the connected database
+        /// </summary>
+        /// <returns>IList of Sermons data from the conneceted database</returns>
+        public async Task<IList<Sermon>> GetSemonsAsync() => await _context.Sermon.ToListAsync();
+
+        /// <summary>
+        /// Update - modifies a sermon data from the connected database
+        /// </summary>
+        /// <param name="sermon">Ser,om object containing updated sermon data</param>
+        /// <returns>Task</returns>
+        public async Task UpdateSermonAsync(Sermon sermon)
         {
-            throw new NotImplementedException();
+            _context.Sermon.Update(sermon);
+            await _context.SaveChangesAsync();
         }
 
-        public Task GetSermonByIdAsync(int id)
+        /// <summary>
+        /// Delete - removes a sermon data from the connected database
+        /// </summary>
+        /// <param name="id">Sermon Id</param>
+        /// <returns>Task</returns>
+        public async Task DeleteSermonAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateSermonAsync(Sermon sermon)
-        {
-            throw new NotImplementedException();
+            Sermon sermon = await GetSermonByIdAsync(id);
+            _context.Sermon.Remove(sermon);
+            await _context.SaveChangesAsync();
         }
     }
 }

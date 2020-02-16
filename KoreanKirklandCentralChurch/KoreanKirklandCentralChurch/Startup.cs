@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KoreanKirklandCentralChurch.Data;
+using KoreanKirklandCentralChurch.Models.Interfaces;
+using KoreanKirklandCentralChurch.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +40,9 @@ namespace KoreanKirklandCentralChurch
 
             // Registers the ChurchDbContext
             services.AddDbContext<ChurchDbContext>(options => options.UseSqlServer(churchConnString));
+
+            // Registers the ISermon and SermonManager
+            services.AddScoped<ISermon, SermonManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
