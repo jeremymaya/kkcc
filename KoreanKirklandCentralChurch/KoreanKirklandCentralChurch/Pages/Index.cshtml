@@ -34,8 +34,11 @@
     <div class="row py-5 px-3 bg-light">
         <div class="col-md">
             <h2>최근 말씀</h2>
-            <h5>"@Model.LatestSermon.Title" — @Model.LatestSermon.Speaker</h5>
-            <p>@Model.LatestSermon.Scripture</p>
+            @if (Model.LatestSermon != null)
+            {
+                <h5>"@Model.LatestSermon.Title" — @Model.LatestSermon.Speaker</h5>
+                <p>@Model.LatestSermon.Scripture</p>
+            }
             <a href="/sermons">설교 더 보기</a>
         </div>
         <div class="col-md">
