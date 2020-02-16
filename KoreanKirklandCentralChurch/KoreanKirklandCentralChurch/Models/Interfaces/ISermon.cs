@@ -11,6 +11,8 @@ namespace KoreanKirklandCentralChurch.Models.Interfaces
 
         Task<Sermon> GetSermonByIdAsync(int id);
 
+        Task<Sermon> GetLatestSermonAsync();
+
         Task<IList<Sermon>> GetSemonsAsync();
 
         Task UpdateSermonAsync(Sermon sermon);

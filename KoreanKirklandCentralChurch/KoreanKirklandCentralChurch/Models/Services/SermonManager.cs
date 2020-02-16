@@ -38,6 +38,12 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// <returns>Sermon data that matches with the sermon Id from the connected database</returns>
         public async Task<Sermon> GetSermonByIdAsync(int id) => await _context.Sermon.FirstOrDefaultAsync(sermon => sermon.Id == id);
 
+        public async Task<Sermon> GetLatestSermonAsync()
+        {
+            IList<Sermon> sermons = await GetSemonsAsync();
+            return sermons.OrderByDescending(sermon => sermon.Id).FirstOrDefault();
+        }
+
         /// <summary>
         /// Read - gets all sermon data from the connected database
         /// </summary>
