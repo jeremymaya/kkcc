@@ -1,0 +1,56 @@
+﻿@page
+@model KoreanKirklandCentralChurch.Pages.Admin.Sermons.EditModel
+@{
+    ViewData["Title"] = "앨범관리자 - 앨범수정";
+    Layout = "_Layout";
+}
+
+<div class="jumbotron jumbotron-fluid bg-light">
+    <div class="container">
+        <h1 class="display-4">앨범 수정</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <iframe class="embed-responsive-item" src="@Model.Sermon.SermonLink" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height:375px; width: 100%; display: block;"></iframe>
+        </div>
+        <div class="col-md-6">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Sermon.Id" />
+                <div class="form-group">
+                    <label asp-for="Sermon.Date" class="control-label"></label>
+                    <input asp-for="Sermon.Date" class="form-control" />
+                    <span asp-validation-for="Sermon.Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sermon.Title" class="control-label"></label>
+                    <input asp-for="Sermon.Title" class="form-control" />
+                    <span asp-validation-for="Sermon.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sermon.Scripture" class="control-label"></label>
+                    <input asp-for="Sermon.Scripture" class="form-control" />
+                    <span asp-validation-for="Sermon.Scripture" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sermon.Speaker" class="control-label"></label>
+                    <input asp-for="Sermon.Speaker" class="form-control" />
+                    <span asp-validation-for="Sermon.Speaker" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sermon.SermonLink" class="control-label"></label>
+                    <input asp-for="Sermon.SermonLink" class="form-control" />
+                    <span asp-validation-for="Sermon.SermonLink" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+            <div>
+                <a asp-page="./Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
