@@ -36,7 +36,7 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// </summary>
         /// <param name="id">Sermon Id</param>
         /// <returns>Sermon data that matches with the sermon Id from the connected database</returns>
-        public async Task<Sermon> GetSermonByIdAsync(int id) => await _context.Sermon.FirstOrDefaultAsync(sermon => sermon.Id == id);
+        public async Task<Sermon> GetSermonByIdAsync(int? id) => await _context.Sermon.FirstOrDefaultAsync(sermon => sermon.Id == id);
 
         public async Task<Sermon> GetLatestSermonAsync()
         {
@@ -66,7 +66,7 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// </summary>
         /// <param name="id">Sermon Id</param>
         /// <returns></returns>
-        public async Task DeleteSermonAsync(int id)
+        public async Task DeleteSermonAsync(int? id)
         {
             Sermon sermon = await GetSermonByIdAsync(id);
             _context.Sermon.Remove(sermon);
