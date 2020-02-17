@@ -9,6 +9,7 @@
     <Folder Include="Pages\Shared\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Pages\Admin\Sermons\" />
   </ItemGroup>
 
   <ItemGroup>
