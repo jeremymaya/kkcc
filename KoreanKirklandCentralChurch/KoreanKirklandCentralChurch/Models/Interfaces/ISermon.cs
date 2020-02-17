@@ -9,7 +9,7 @@ namespace KoreanKirklandCentralChurch.Models.Interfaces
     {
         Task CreateSermonAsync(Sermon sermon);
 
-        Task<Sermon> GetSermonByIdAsync(int id);
+        Task<Sermon> GetSermonByIdAsync(int? id);
 
         Task<Sermon> GetLatestSermonAsync();
 
@@ -17,6 +17,6 @@ namespace KoreanKirklandCentralChurch.Models.Interfaces
 
         Task UpdateSermonAsync(Sermon sermon);
 
-        Task DeleteSermonAsync(int id);
+        Task DeleteSermonAsync(int? id);
     }
 }

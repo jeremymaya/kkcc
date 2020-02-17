@@ -17,6 +17,7 @@ namespace KoreanKirklandCentralChurch.Pages.Admin.Albums
         {
             _album = album;
         }
+
         public IActionResult OnGet()
         {
             return Page();

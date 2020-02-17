@@ -19,9 +19,6 @@
         <thead>
             <tr>
                 <th scope="col">
-                    설교영상
-                </th>
-                <th scope="col">
                     @Html.DisplayNameFor(model => model.Sermons[0].Date)
                 </th>
                 <th scope="col">
@@ -40,9 +37,6 @@
             @foreach (var item in Model.Sermons)
             {
             <tr>
-                <td scope="row">
-                    <img src="@Html.DisplayFor(modelItem => item.SermonLink)" width="100" height="100" />
-                </td>
                 <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>

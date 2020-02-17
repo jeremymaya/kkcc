@@ -1,0 +1,57 @@
+﻿@page
+@model KoreanKirklandCentralChurch.Pages.Admin.Sermons.DetailsModel
+@{
+    ViewData["Title"] = "앨범관리자 - 앨범정보";
+    Layout = "_Layout";
+}
+
+<div class="jumbotron jumbotron-fluid bg-light">
+    <div class="container">
+        <h1 class="display-4">앨범정보</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <iframe class="embed-responsive-item" src="@Model.Sermon.SermonLink" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height:375px; width: 100%; display: block;"></iframe>
+        </div>
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sermon.Date)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sermon.Date)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sermon.Title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sermon.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sermon.Scripture)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sermon.Scripture)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sermon.Speaker)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sermon.Speaker)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sermon.SermonLink)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sermon.SermonLink)
+                </dd>
+            </dl>
+            <div>
+                <a asp-page="./Edit" asp-route-id="@Model.Sermon.Id">Edit</a> |
+                <a asp-page="./Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
