@@ -1,14 +1,14 @@
 ﻿@page
-@model KoreanKirklandCentralChurch.Pages.Admin.Albums.IndexModel
+@model KoreanKirklandCentralChurch.Pages.Admin.Sermons.IndexModel
 @{
-    ViewData["Title"] = "앨범관리자";
+    ViewData["Title"] = "설교관리자";
     Layout = "_Layout";
 }
 
 <div class="jumbotron jumbotron-fluid bg-light">
     <div class="container">
-        <h1 class="display-4">앨범관리자</h1>
-        <p class="lead">앨범 관리자 페이지입니다.</p>
+        <h1 class="display-4">설교관리자</h1>
+        <p class="lead">설교 관리자 페이지입니다.</p>
     </div>
 </div>
 <div class="container">
@@ -19,35 +19,41 @@
         <thead>
             <tr>
                 <th scope="col">
-                    앨범커버
+                    설교영상
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Albums[0].Title)
+                    @Html.DisplayNameFor(model => model.Sermons[0].Date)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Albums[0].Date)
+                    @Html.DisplayNameFor(model => model.Sermons[0].Title)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Albums[0].AlbumLink)
+                    @Html.DisplayNameFor(model => model.Sermons[0].Scripture)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Sermons[0].SermonLink)
                 </th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Albums)
+            @foreach (var item in Model.Sermons)
             {
             <tr>
                 <td scope="row">
-                    <img src="@Html.DisplayFor(modelItem => item.Thumbnail)" width="100" height="100" />
-                </td>
-                <td class="align-middle">
-                    @Html.DisplayFor(modelItem => item.Title)
+                    <img src="@Html.DisplayFor(modelItem => item.SermonLink)" width="100" height="100" />
                 </td>
                 <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td class="align-middle">
-                    <a href="@Html.DisplayFor(modelItem => item.AlbumLink)">@Html.DisplayFor(modelItem => item.AlbumLink)</a>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.Scripture)
+                </td>
+                <td class="align-middle">
+                    <a href="@Html.DisplayFor(modelItem => item.SermonLink)">@Html.DisplayFor(modelItem => item.SermonLink)</a>
                 </td>
                 <td class="align-middle">
                     <a asp-page="./Edit" asp-route-id="@item.Id">수정</a> |
