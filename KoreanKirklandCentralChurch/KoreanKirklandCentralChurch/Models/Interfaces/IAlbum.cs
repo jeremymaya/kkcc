@@ -15,6 +15,6 @@ namespace KoreanKirklandCentralChurch.Models.Interfaces
 
         Task UpdateAlbumAsync(Album album);
 
-        Task DeleteAlbumAsync(int id);
+        Task DeleteAlbumAsync(int? id);
     }
 }

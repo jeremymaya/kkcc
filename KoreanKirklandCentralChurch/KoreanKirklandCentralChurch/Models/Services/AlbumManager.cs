@@ -60,7 +60,7 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// </summary>
         /// <param name="id">Album Id</param>
         /// <returns></returns>
-        public async Task DeleteAlbumAsync(int id)
+        public async Task DeleteAlbumAsync(int? id)
         {
             Album album = await GetAlbumByIdAsync(id);
             _context.Album.Remove(album);
