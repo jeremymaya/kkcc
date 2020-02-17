@@ -9,7 +9,7 @@ namespace KoreanKirklandCentralChurch.Models.Interfaces
     {
         Task CreateAlbumAsync(Album album);
 
-        Task<Album> GetAlbumByIdAsync(int id);
+        Task<Album> GetAlbumByIdAsync(int? id);
 
         Task<IList<Album>> GetAlbumsAsync();
 
