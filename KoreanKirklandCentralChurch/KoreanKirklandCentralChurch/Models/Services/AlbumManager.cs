@@ -36,7 +36,7 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// </summary>
         /// <param name="id">album Id</param>
         /// <returns>Album data that matches with the album Id from the connected database</returns>
-        public async Task<Album> GetAlbumByIdAsync(int id) => await _context.Album.FirstOrDefaultAsync(album => album.Id == id);
+        public async Task<Album> GetAlbumByIdAsync(int? id) => await _context.Album.FirstOrDefaultAsync(album => album.Id == id);
 
         /// <summary>
         /// Read - gets all album data from the connected database
@@ -60,7 +60,7 @@ namespace KoreanKirklandCentralChurch.Models.Services
         /// </summary>
         /// <param name="id">Album Id</param>
         /// <returns></returns>
-        public async Task DeleteAlbumAsync(int id)
+        public async Task DeleteAlbumAsync(int? id)
         {
             Album album = await GetAlbumByIdAsync(id);
             _context.Album.Remove(album);
