@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KoreanKirklandCentralChurch.Data;
+using KoreanKirklandCentralChurch.Models;
 using KoreanKirklandCentralChurch.Models.Interfaces;
 using KoreanKirklandCentralChurch.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +43,16 @@ namespace KoreanKirklandCentralChurch
             // Registers the ChurchDbContext
             services.AddDbContext<ChurchDbContext>(options => options.UseSqlServer(churchConnString));
 
+            string userConnString = Environment.IsDevelopment()
+                ? Configuration["ConnectionStrings:UserDevelopmentConnection"]
+                : Configuration["ConnectionStrings:UserProductionConnection"];
+
+            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseSqlServer(userConnString));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ChurchApplicationDbContext>().AddDefaultTokenProviders();
+
+            services.AddAuthorization(options => options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin)));
+
             // Registers the ISermon and SermonManager
             services.AddScoped<ISermon, SermonManager>();
 
@@ -49,7 +61,7 @@ namespace KoreanKirklandCentralChurch
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -60,10 +72,16 @@ namespace KoreanKirklandCentralChurch
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
+
+            RoleInitializer.SeedData(serviceProvider);
         }
     }
 }
