@@ -20,14 +20,29 @@ namespace KoreanKirklandCentralChurch
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public IHostEnvironment Environment { get; }
+        public IWebHostEnvironment WebHostEnvironment { get; }
 
-        public Startup(IHostEnvironment environment)
+        public Startup(IWebHostEnvironment webHostEnvironment)
         {
-            Environment = environment;
             var builder = new ConfigurationBuilder().AddEnvironmentVariables();
             builder.AddUserSecrets<Startup>();
             Configuration = builder.Build();
+            WebHostEnvironment = webHostEnvironment;
+        }
+
+        // Source: https://n1ghtmare.github.io/2020-09-28/deploying-a-dockerized-aspnet-core-app-using-a-postgresql-db-to-heroku/
+        private string GetHerokuConnectionString(string connectionString)
+        {
+            string connectionUrl = WebHostEnvironment.IsDevelopment()
+                ? Configuration["ConnectionStrings:" + connectionString]
+                : Environment.GetEnvironmentVariable(connectionString);
+
+            var databaseUri = new Uri(connectionUrl);
+
+            string db = databaseUri.LocalPath.TrimStart('/');
+            string[] userInfo = databaseUri.UserInfo.Split(':', StringSplitOptions.RemoveEmptyEntries);
+
+            return $"User ID={userInfo[0]};Password={userInfo[1]};Host={databaseUri.Host};Port={databaseUri.Port};Database={db};Pooling=true;SSL Mode=Require;Trust Server Certificate=True;";
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -36,28 +51,19 @@ namespace KoreanKirklandCentralChurch
         {
             services.AddRazorPages();
 
-            string churchConnString = Environment.IsDevelopment()
-                ? Configuration["ConnectionStrings:ChurchDevelopmentConnection"]
-                : Configuration["ConnectionStrings:ChurchProductionConnection"];
+            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("APPLICATION_CRIMSON")));
 
-            // Registers the ChurchDbContext
-            services.AddDbContext<ChurchDbContext>(options => options.UseSqlServer(churchConnString));
-
-            string userConnString = Environment.IsDevelopment()
-                ? Configuration["ConnectionStrings:UserDevelopmentConnection"]
-                : Configuration["ConnectionStrings:UserProductionConnection"];
-
-            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseSqlServer(userConnString));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ChurchApplicationDbContext>().AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
+                    .AddDefaultTokenProviders();
 
             services.AddAuthorization(options => options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin)));
 
-            // Registers the ISermon and SermonManager
-            services.AddScoped<ISermon, SermonManager>();
+            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("CHURCH_PINK")));
 
-            // Registers the IAlbum and AlbumManager
-            services.AddScoped<IAlbum, AlbumManager>();
+            services.AddTransient<ISermon, SermonManager>();
+
+            services.AddTransient<IAlbum, AlbumManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,12 +82,12 @@ namespace KoreanKirklandCentralChurch
 
             app.UseAuthorization();
 
+            RoleInitializer.SeedData(serviceProvider);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
-
-            RoleInitializer.SeedData(serviceProvider);
         }
     }
 }

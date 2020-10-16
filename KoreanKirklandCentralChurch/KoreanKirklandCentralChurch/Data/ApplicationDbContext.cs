@@ -5,11 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KoreanKirklandCentralChurch.Data
 {
-    public class ChurchApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ChurchApplicationDbContext(DbContextOptions<ChurchApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
         }
     }
 }

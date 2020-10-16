@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace KoreanKirklandCentralChurch.Migrations
+namespace KoreanKirklandCentralChurch.Migrations.ChurchDb
 {
     public partial class initial : Migration
     {
@@ -12,7 +13,7 @@ namespace KoreanKirklandCentralChurch.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Thumbnail = table.Column<string>(nullable: false),
                     Title = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
@@ -28,7 +29,7 @@ namespace KoreanKirklandCentralChurch.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(nullable: false),
                     Speaker = table.Column<string>(nullable: false),
                     Scripture = table.Column<string>(nullable: false),

@@ -25,7 +25,7 @@ namespace KoreanKirklandCentralChurch.Models
         /// <param name="serviceProvider"></param>
         public static void SeedData(IServiceProvider serviceProvider)
         {
-            using (var dbContext = new ChurchApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ChurchApplicationDbContext>>()))
+            using (var dbContext = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
                 dbContext.Database.EnsureCreated();
                 AddRoles(dbContext);
@@ -36,7 +36,7 @@ namespace KoreanKirklandCentralChurch.Models
         /// Adds IdentityRoles in Roles to the ApplicationDbContext and save the changes
         /// </summary>
         /// <param name="dbContext">ApplicationUserDbContext</param>
-        private static void AddRoles(ChurchApplicationDbContext dbContext)
+        private static void AddRoles(ApplicationDbContext dbContext)
         {
             if (dbContext.Roles.Any())
                 return;
