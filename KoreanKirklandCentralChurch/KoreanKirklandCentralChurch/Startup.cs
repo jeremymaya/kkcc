@@ -20,14 +20,32 @@ namespace KoreanKirklandCentralChurch
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public IHostEnvironment Environment { get; }
+        public IWebHostEnvironment WebHostEnvironment { get; }
 
-        public Startup(IHostEnvironment environment)
+        public Startup(IWebHostEnvironment webHostEnvironment)
         {
-            Environment = environment;
             var builder = new ConfigurationBuilder().AddEnvironmentVariables();
             builder.AddUserSecrets<Startup>();
             Configuration = builder.Build();
+            WebHostEnvironment = webHostEnvironment;
+        }
+
+        // Source: https://n1ghtmare.github.io/2020-09-28/deploying-a-dockerized-aspnet-core-app-using-a-postgresql-db-to-heroku/
+        private string GetHerokuConnectionString(string connectionString)
+        {
+            // Get the connection string from the ENV variables
+            // Modified to bring in connection string from secrets in Development
+            string connectionUrl = WebHostEnvironment.IsDevelopment()
+                ? connectionString
+                : Environment.GetEnvironmentVariable(connectionString);
+
+            // parse the connection string
+            var databaseUri = new Uri(connectionUrl);
+
+            string db = databaseUri.LocalPath.TrimStart('/');
+            string[] userInfo = databaseUri.UserInfo.Split(':', StringSplitOptions.RemoveEmptyEntries);
+
+            return $"User ID={userInfo[0]};Password={userInfo[1]};Host={databaseUri.Host};Port={databaseUri.Port};Database={db};Pooling=true;SSL Mode=Require;Trust Server Certificate=True;";
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -36,18 +54,11 @@ namespace KoreanKirklandCentralChurch
         {
             services.AddRazorPages();
 
-            string churchConnString = Environment.IsDevelopment()
-                ? Configuration["ConnectionStrings:ChurchDevelopmentConnection"]
-                : Configuration["ConnectionStrings:ChurchDevelopmentConnection"];
-
             // Registers the ChurchDbContext
-            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(churchConnString));
+            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("HEROKU_PINK")));
 
-            string userConnString = Environment.IsDevelopment()
-                ? Configuration["ConnectionStrings:UserDevelopmentConnection"]
-                : Configuration["ConnectionStrings:UserDevelopmentConnection"];
-
-            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseNpgsql(userConnString));
+            // Registers the ChurchApplicationDbContext
+            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("HEROKU_CRIMSON")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ChurchApplicationDbContext>().AddDefaultTokenProviders();
 
