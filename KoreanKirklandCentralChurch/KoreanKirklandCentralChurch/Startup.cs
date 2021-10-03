@@ -38,16 +38,16 @@ namespace KoreanKirklandCentralChurch
 
             string churchConnString = Environment.IsDevelopment()
                 ? Configuration["ConnectionStrings:ChurchDevelopmentConnection"]
-                : Configuration["ConnectionStrings:ChurchProductionConnection"];
+                : Configuration["ConnectionStrings:ChurchDevelopmentConnection"];
 
             // Registers the ChurchDbContext
-            services.AddDbContext<ChurchDbContext>(options => options.UseSqlServer(churchConnString));
+            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(churchConnString));
 
             string userConnString = Environment.IsDevelopment()
                 ? Configuration["ConnectionStrings:UserDevelopmentConnection"]
-                : Configuration["ConnectionStrings:UserProductionConnection"];
+                : Configuration["ConnectionStrings:UserDevelopmentConnection"];
 
-            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseSqlServer(userConnString));
+            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseNpgsql(userConnString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ChurchApplicationDbContext>().AddDefaultTokenProviders();
 
