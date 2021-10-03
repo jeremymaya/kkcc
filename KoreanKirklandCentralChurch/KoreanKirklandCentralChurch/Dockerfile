@@ -4,13 +4,15 @@ FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+ARG APPLICATION_CRIMSON_ARG
+ARG CHURCH_PINK_ARG
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["KoreanKirklandCentralChurch/KoreanKirklandCentralChurch.csproj", "KoreanKirklandCentralChurch/"]
-RUN dotnet restore "KoreanKirklandCentralChurch/KoreanKirklandCentralChurch.csproj"
+COPY ["KoreanKirklandCentralChurch.csproj", "./"]
+RUN dotnet restore "./KoreanKirklandCentralChurch.csproj"
 COPY . .
-WORKDIR "/src/KoreanKirklandCentralChurch"
+WORKDIR "/src/."
 RUN dotnet build "KoreanKirklandCentralChurch.csproj" -c Release -o /app/build
 
 FROM build AS publish
@@ -19,4 +21,4 @@ RUN dotnet publish "KoreanKirklandCentralChurch.csproj" -c Release -o /app/publi
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "KoreanKirklandCentralChurch.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet KoreanKirklandCentralChurch.dll
