@@ -52,10 +52,10 @@ namespace KoreanKirklandCentralChurch
             services.AddRazorPages();
 
             // Registers the ChurchDbContext
-            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("CHURCH_PINK_ARG")));
+            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("CHURCH_PINK")));
 
             // Registers the ChurchApplicationDbContext
-            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("APPLICATION_CRIMSON_ARG")));
+            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("APPLICATION_CRIMSON")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ChurchApplicationDbContext>().AddDefaultTokenProviders();
 
