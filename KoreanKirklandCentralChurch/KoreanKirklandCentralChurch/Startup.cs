@@ -34,10 +34,7 @@ namespace KoreanKirklandCentralChurch
         private string GetHerokuConnectionString(string connectionString)
         {
             // Get the connection string from the ENV variables
-            // Modified to bring in connection string from secrets in Development
-            string connectionUrl = WebHostEnvironment.IsDevelopment()
-                ? connectionString
-                : Environment.GetEnvironmentVariable(connectionString);
+            string connectionUrl = Environment.GetEnvironmentVariable(connectionString);
 
             // parse the connection string
             var databaseUri = new Uri(connectionUrl);
@@ -55,10 +52,10 @@ namespace KoreanKirklandCentralChurch
             services.AddRazorPages();
 
             // Registers the ChurchDbContext
-            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("HEROKU_PINK")));
+            services.AddDbContext<ChurchDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("CHURCH_PINK")));
 
             // Registers the ChurchApplicationDbContext
-            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("HEROKU_CRIMSON")));
+            services.AddDbContext<ChurchApplicationDbContext>(options => options.UseNpgsql(GetHerokuConnectionString("APPLICATION_CRIMSON")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ChurchApplicationDbContext>().AddDefaultTokenProviders();
 
