@@ -34,7 +34,6 @@ namespace KoreanKirklandCentralChurch
         private string GetHerokuConnectionString(string connectionString)
         {
             // Get the connection string from the ENV variables
-            // Modified to bring in connection string from secrets in Development
             string connectionUrl = Environment.GetEnvironmentVariable(connectionString);
 
             // parse the connection string
