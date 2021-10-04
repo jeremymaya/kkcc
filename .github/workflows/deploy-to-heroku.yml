@@ -6,7 +6,7 @@ name: deploy
 on: [push, pull_request]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:

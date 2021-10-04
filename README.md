@@ -1,11 +1,17 @@
 # kkcc
 
-## About This Project
-This is a demo website built for Korean Kirkland Covenant Church. 
+![Actions Status](https://github.com/jeremymaya/kkcc/workflows/deploy/badge.svg)  
 
-Deployed Link: https://koreankirklandcentralchurch.azurewebsites.net/
+Author: Kyungrae Kim
+
+Deployed Link: <https://kkcc.herokuapp.com>
+
+## About This Project
+
+This is a demo website built for Korean Kirkland Covenant Church.
 
 Criteria for this demo includes:
+
 * Make improvements from the [current website](https://kkcc.business.site/)
 * Add ability to post and show sermons
 * Come up with better way to post photos to share current events
@@ -13,12 +19,20 @@ Criteria for this demo includes:
 ---
 
 ## Project Log
+
+### 10/3/2021
+
+* Database changed from Microsoft SQL Server to Postgres
+* Containerized to CI/CD to Heroku
+
 ### 2/8/2020
+
 Basic layout completed.
 
 All of the criterias needed to be fulfilled in a short amount of time and cost needs to be minimized. Also it needed to ensure minimal future maintainence.
 
 To meet the criterias, the demo implements Google services as it offered the following:
+
 * Bootstrap for clean appearance and ready to use components
 * YouTube for free unlimited video hosting
 * Google Photos for free unlimited image hosting
@@ -26,6 +40,7 @@ To meet the criterias, the demo implements Google services as it offered the fol
 Building features around the services offered by Google was fairly smooth but working with Google Photos came as unxpected challenge since it did not offer any embeding services. This challenge was addressed by generating thumbnail image link by using [CTRLQ.org](https://ctrlq.org/google/photos/) and linking the album directly to the Google Photos album.
 
 If this demo is approved to proceed forward, below features need to be discussed and worked on:
+
 * Overall theme for the website
 * Icon for navbar and favicon
 * Image assests for the website (all hosted via Google Photos)
@@ -48,6 +63,7 @@ If this demo is approved to proceed forward, below features need to be discussed
 ---
 
 ## Resource
+
 * [colorlib.com](https://colorlib.com/preview/theme/reborn/contact.html)
 * [Boostrap - Examples](https://getbootstrap.com/docs/4.1/examples/)
 * [YouTube Data API - Videos](https://developers.google.com/youtube/v3/docs/videos/list)
